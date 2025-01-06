@@ -1,0 +1,32 @@
+lets get started with kafka as a docker image
+
+
+downloading images zookeeper and kafka from docker hub
+
+docker-compose file has images and config 
+
+##docker run -d --name zookeeper_airflow wurstmeister/zookeeper:latest
+
+##docker run -d --name kafka_server wurstmeister/kafka:latest
+
+so docker-compose is best
+
+
+go into container
+
+docker exec -it container_id /bin/bash
+#docker exec -it 1b84a5eab60fb7d06672403d9fc9ee000640f63b8e3444bef5b78e27f5c27ee4 /bin/bash
+
+docker exec -it <kafka-container-id> /opt/kafka/bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic my-topic
+
+
+/opt/kafka/bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic pilot
+
+kafka-console-producer.sh --broker-list localhost:9092 --topic pilot
+
+docker exec -it <kafka-container-id> /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic pilot --from-beginning
+
+exit
+
+------------
+#airflow now
